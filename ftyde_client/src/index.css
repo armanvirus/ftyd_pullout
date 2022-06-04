@@ -10,6 +10,21 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+body::-webkit-scrollbar{
+  width: 5px;
+  cursor: pointer;
+  height: 3;
+  
+}
+body::-webkit-scrollbar-track{
+  background: #fff;
+}
+body::-webkit-scrollbar-thumb{
+  
+  background: rgba(0, 255, 0, 0.8);
 }
 
 code {

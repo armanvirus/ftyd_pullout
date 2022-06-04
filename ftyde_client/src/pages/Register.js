@@ -1,4 +1,5 @@
 import react from 'react';
+import {FaTelegramPlane} from "react-icons/fa"
 
 function Login(){
     return(
@@ -12,7 +13,7 @@ function Login(){
                     <input type='text' placeholder="Full Name"/>
                     <input type='email' placeholder="Email"/>
                     <input type='password' placeholder="Password"/>
-                    <button>Register</button>
+                    <button type="submit">Login <FaTelegramPlane/> </button>
                     {/* <p>don't have an account? <br/> create now!</p> */}
                 </form>
             </div>
