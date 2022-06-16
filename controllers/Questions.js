@@ -29,26 +29,28 @@ module.exports = {
         // a function to select random questions
         const randomSlector = (ramdomQuest,allQuest)=>{
             let randomIndext;
-            for(let i = 0; i <= 2; i++){
+            for(let i = 0; i <= 5; i++){
                  randomIndext = Math.floor(Math.random()*allQuest.length);
                  ramdomQuest.push(allQuest[randomIndext]);
-                 console.log(randomIndext)
             }
                 return ramdomQuest;
         }
         // extract category from url
         const niche = req.params.category;
-        let ramdomQuest = [];
+        let ramdomQuests = [];
 
-        // check if the category is all fetch questins
+        // check if the category is all fetch all questins
         //otherwise select that particular group of questions
         if(niche == 'all'){
             Questions.find({},(err,foundQuestions)=>{
-                res.send(randomSlector(ramdomQuest,foundQuestions));
+                console.log(randomSlector(ramdomQuests,foundQuestions))
+                res.send(randomSlector(ramdomQuests,foundQuestions));
             })
         }else{
             Questions.find({category:niche},(err,foundQuestions)=>{
-                res.send(randomSlector(ramdomQuest,foundQuestions));
+                console.log(foundQuestions)
+                // console.log(randomSlector(ramdomQuests,foundQuestions))
+                res.send(randomSlector(ramdomQuests,foundQuestions));
         })}
     }
 }

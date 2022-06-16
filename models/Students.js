@@ -19,7 +19,6 @@ const StudentSchema = new Schema({
     },
     facebookId:{
         type:String,
-        unique:true
     },
     courses:[],
     certificates:[String],

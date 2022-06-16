@@ -24,7 +24,7 @@ function Courses(){
              {CoursesData.map((course)=>{
                  return(
                  <div className="products_list" key={course.name}>
-                    <a href="/"> 
+                    <a href={`/quiz/${course.name}`}> 
                     <img src={require(`../${course.displayImg}`)} alt="" className="im pro-image"/>
                      </a>
                         <div className="effect"></div>

@@ -9,15 +9,17 @@ import Register from './pages/Register';
 import Courses from './pages/Courses';
 import Quiz from './pages/Quiz';
 
+global.score = [];
+
 function App() {
   return (
     <Router>
     <div className="App">
     <Routes>
-     <Route element={<Login/>} path="login"/>
+     <Route element={<Login/>} path="/login"/>
      <Route element={<Register/>} path="register"/>
-     <Route element={<Quiz/>} path="/"/>
-     <Route element={<Courses/>} path="courses"/>
+     <Route element={<Quiz/>} path="/quiz/:category"/>
+     <Route element={<Courses/>} path="/"/>
      </Routes>
     </div>
     </Router>
