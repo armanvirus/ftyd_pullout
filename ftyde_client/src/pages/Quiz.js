@@ -12,6 +12,7 @@ function Quiz(){
     let navigate = useNavigate();
     let url = useLocation();
     const [questins, setQuestions] = useState();
+    const [student,setStudent] = useState()
     const [loading, setLoading] = useState(true);
     const [cindex, setcIndex] = useState(0);
     const [selectedOp,setSelectedOp] = useState([]);
@@ -51,14 +52,16 @@ function Quiz(){
 
     const fechQuestions = ()=>{
         setLoading(true);
-        axios.get(`http://localhost:2000/test/start/${category}`,{withCredentials:true})
+        axios.defaults.withCredentials = true;
+        axios.get(`http://localhost:2000/test/start/${category}`)
         .then((res)=>{
             if(res.data?.verification === false){
                 localStorage.setItem('intendedRoute',`${url.pathname}`)
                 navigate("/login",)
             }else{
-                setQuestions(res.data);
-                console.log(res.data)
+                setQuestions(res.data.questions);
+                setStudent(res.data.student);
+                console.log(res)
             }
             setLoading(false);
         }).catch((err)=>{
@@ -148,7 +151,7 @@ function Quiz(){
             {loading ? <div> please wait and calm down while questions are getting ready</div> : <div className="quiz-sec">
             {/* quiz for information for mobile view */}
                 <div className="quiz-utils">
-                 <div className="user-"><img src={require('../imgs/man.png')}/> <span>Abdurrahman Grena</span></div>
+                 <div className="user-"><img src={require('../imgs/man.png')}/> <span>{student.name}</span></div>
                  <div className="ct">
                  <div>{category}</div>
                  {/* <div className="time">
@@ -174,7 +177,7 @@ function Quiz(){
 
                 {/* quiz information for desktop view */}
                 <div className="quiz-utils-desktop">
-                 <div className="user-"><img src={require('../imgs/man.png')}/> <span>Abdurrahman Grena</span></div>
+                 <div className="user-"><img src={require('../imgs/man.png')}/> <span>{student.name}</span></div>
                  <div className="ct">
                  <div>{category}</div>
                  {/* <div className="time">

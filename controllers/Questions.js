@@ -50,7 +50,8 @@ module.exports = {
             Questions.find({category:niche},(err,foundQuestions)=>{
                 console.log(foundQuestions)
                 // console.log(randomSlector(ramdomQuests,foundQuestions))
-                res.send(randomSlector(ramdomQuests,foundQuestions));
+                res.json({questions:randomSlector(ramdomQuests,foundQuestions),
+                            student:req.user});
         })}
     }
 }

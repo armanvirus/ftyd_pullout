@@ -30,7 +30,14 @@ const express = require('express'),
       //lift restriction of blockage from other origin
       app.use(cors({
         credentials:true,
-        origin:'http://localhost:3000'}))
+        origin:'http://localhost:3000'}));
+
+        // app.use(function(req, res, next) {
+        //   // res.header("Access-Control-Allow-Origin", "*");
+        //   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+        //   res.header("Access-Control-Allow-Headers", "x-access-token, Origin, X-Requested-With, Content-Type, Accept");
+        //   next();
+        // });
       // body parser
       app.use(express.json());
       app.use(express.urlencoded({extended: false}));
@@ -99,14 +106,24 @@ const express = require('express'),
          );
       })
 
-      app.post('/login',passport.authenticate('local',{failureMessage:true}), (req, res, next) => {
-          if(req.user || req.session.user){
-           return res.json({failLogin:false,
-            Student:req.user})
-          }
-          cons.log(req.message)
-          res.json({
-            failLogin:true,
+      app.post('/login',passport.authenticate('local'), (req, res, next) => {
+          // if(req.user || req.session.user){
+          //  return res.json({failLogin:false,
+          //   Student:req.user})
+          // }
+          // // cons.log(req.message)
+          // res.json({
+          //   failLogin:true,
+          // })
+          req.session.save(()=>{
+            if(req.user || req.session.user){
+              return res.json({failLogin:false,
+               Student:req.user})
+             }
+             // cons.log(req.message)
+             res.json({
+               failLogin:true,
+             })
           })
         }
       )

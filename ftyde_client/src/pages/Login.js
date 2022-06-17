@@ -52,7 +52,8 @@ function Login(){
       onSubmit={(values, { setSubmitting }) => {
         
         //   alert(JSON.stringify(values, null, 2));
-        console.log(JSON.stringify(values, null, 2))
+        console.log(JSON.stringify(values, null, 2));
+        axios.defaults.withCredentials = true;
         axios.post('http://localhost:2000/login', {
           email:values.email,
           password:values.password
@@ -61,7 +62,7 @@ function Login(){
           if(response.data.failLogin === false){
             let previousRoute = localStorage.getItem('intendedRoute');
             // console.log(previousRoute)
-            window.location.reload()
+            // window.location.reload()
             navigate(previousRoute);
           }
         })
