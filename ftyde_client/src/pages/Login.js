@@ -17,21 +17,21 @@ function Login(){
       }, 2000);
     }
 
-    const socialLogF = (event)=>{
-      event.preventDefault();
-      axios.get('http://localhost:2000/auth/user/facebook')
-      .then((res)=>{
-        console.log(res)
-      })
-      .catch((err)=>{
-        console.log(err)
-      })
-    }
+    // const socialLogF = (event)=>{
+    //   event.preventDefault();
+    //   axios.get('http://localhost:2000/auth/user/facebook')
+    //   .then((res)=>{
+    //     console.log(res)
+    //   })
+    //   .catch((err)=>{
+    //     console.log(err)
+    //   })
+    // }
     return(
         <div className="login">
             <div className="form-wraper">
                 <div className="social-login">
-                <a onClick={(e)=> socialLogF(e)} href=""><FaGoogle/>login with google</a>
+                <a href="http://localhost:2000/auth/user/facebook"><FaGoogle/>login with google</a>
                 <a href=""><FaFacebook/>login with facebook</a>
                 </div>
                 <div className={errClass}>{error}</div>

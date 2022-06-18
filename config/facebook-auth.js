@@ -23,7 +23,7 @@ module.exports = function(passport){
     callbackURL: "http://localhost:2000/auth/facebook/callback"
    },
    function(accessToken, refreshToken, profile, cb) {
-    User.findOne({ facebookId: profile.id },
+    Students.findOne({ facebookId: profile.id },
          function (err, user) {
       return cb(err, user);
     });
